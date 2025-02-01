@@ -7,7 +7,7 @@ import com.cdac.orderease.exception.UserNotFoundException;
 
 public interface UserService {
 //	register user
-	UserDTO registerUser(UserDTO user) throws UserAlreadyPresentException;
+	UserDTO registerUser(UserDTO userDto) throws UserAlreadyPresentException;
 
 	LoginUserDTO loginUser(LoginUserDTO loginUserDto) throws UserNotFoundException;
 }
