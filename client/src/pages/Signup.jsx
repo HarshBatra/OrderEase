@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router";
 import { useNavigate } from "react-router-dom";
 
-const SignupPage = () => {
+const Signup = () => {
   const [username, setUsername] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -171,4 +171,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default Signup;
