@@ -8,7 +8,7 @@ import com.cdac.orderease.mapper.OrderItemsMapper;
 import com.cdac.orderease.repository.OrderItemsRepository;
 import com.cdac.orderease.service.OrderItemsService;
 
-public class OrderItemsImpl implements OrderItemsService {
+public class OrderItemsServiceImpl implements OrderItemsService {
 
 	@Autowired
 	OrderItemsRepository orderItemsRepository;
