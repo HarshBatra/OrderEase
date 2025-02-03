@@ -1,5 +1,10 @@
 package com.cdac.orderease.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.cdac.orderease.entity.OrderItems;
+
 public class MenuDTO {
 	private Long itemId;
 	private String itemName;
@@ -9,6 +14,8 @@ public class MenuDTO {
 	private Boolean itemIsAvailable;
 	private String itemImage;
 	private String itemImageUrl;
+	private List<OrderItems> orderItemList = new ArrayList<>();
+	
 	public Long getItemId() {
 		return itemId;
 	}
@@ -57,6 +64,12 @@ public class MenuDTO {
 	public void setItemImageUrl(String itemImageUrl) {
 		this.itemImageUrl = itemImageUrl;
 	}
+	public List<OrderItems> getOrderItemList() {
+		return orderItemList;
+	}
+	public void setOrderItemList(List<OrderItems> orderItemList) {
+		this.orderItemList = orderItemList;
+	}
 	public MenuDTO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -73,4 +86,18 @@ public class MenuDTO {
 		this.itemImage = itemImage;
 		this.itemImageUrl = itemImageUrl;
 	}
+	public MenuDTO(Long itemId, String itemName, String itemDescription, String itemPrice, String itemType,
+			Boolean itemIsAvailable, String itemImage, String itemImageUrl, List<OrderItems> orderItemList) {
+		super();
+		this.itemId = itemId;
+		this.itemName = itemName;
+		this.itemDescription = itemDescription;
+		this.itemPrice = itemPrice;
+		this.itemType = itemType;
+		this.itemIsAvailable = itemIsAvailable;
+		this.itemImage = itemImage;
+		this.itemImageUrl = itemImageUrl;
+		this.orderItemList = orderItemList;
+	}
+	
 }

@@ -12,7 +12,7 @@ public interface UserService {
 //	register user
 	UserDTO registerUser(UserDTO userDto) throws UserAlreadyPresentException;
 
-	LoginUserDTO loginUser(LoginUserDTO loginUserDto) throws UserNotFoundException;
+	UserDTO loginUser(LoginUserDTO loginUserDto) throws UserNotFoundException;
 
 	UserDTO getSingleUser(Long userId) throws UserNotFoundException;
 

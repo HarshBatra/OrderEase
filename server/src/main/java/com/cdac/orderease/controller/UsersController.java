@@ -34,9 +34,9 @@ public class UsersController {
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<LoginUserDTO> loginUser(@RequestBody LoginUserDTO loginUserDto) throws UserNotFoundException {
-		userService.loginUser(loginUserDto);
-		return ResponseEntity.status(HttpStatus.FOUND).body(loginUserDto);
+	public ResponseEntity<UserDTO> loginUser(@RequestBody LoginUserDTO loginUserDto) throws UserNotFoundException {
+		UserDTO loginUser = userService.loginUser(loginUserDto);
+		return ResponseEntity.status(HttpStatus.FOUND).body(loginUser);
 	}
 	
 	@GetMapping("/{userId}")

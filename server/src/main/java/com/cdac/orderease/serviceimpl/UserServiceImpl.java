@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.cdac.orderease.dto.LoginUserDTO;
 import com.cdac.orderease.dto.UserDTO;
-import com.cdac.orderease.entity.Menu;
 import com.cdac.orderease.entity.User;
 import com.cdac.orderease.exception.NoUsersFoundException;
 import com.cdac.orderease.exception.UserAlreadyPresentException;
@@ -35,13 +34,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public LoginUserDTO loginUser(LoginUserDTO loginUserDto) throws UserNotFoundException {
-		User user = UserMapper.mapLoginUserDtoToUser(loginUserDto);
+	public UserDTO loginUser(LoginUserDTO loginUserDto) throws UserNotFoundException {
 		Optional<User> isUser = userRepository.findByUsernameAndPassword(loginUserDto.getUsername(), loginUserDto.getPassword());
 		if(isUser.isEmpty()) {
 			throw new UserNotFoundException("User with username : " + loginUserDto.getUsername() + " and password : " + loginUserDto.getPassword() + " not found");
 		}
-		return UserMapper.mapUserToLoginUserDto(user);
+		User user = isUser.get();
+		return UserMapper.mapUserToUserDto(user);
 	}
 
 	@Override

@@ -1,10 +1,17 @@
 package com.cdac.orderease.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,6 +35,11 @@ public class Menu {
 	private String itemImage;
 	@Column(name = "itemimageurl")
 	private String itemImageUrl;
+	
+	@OneToMany(mappedBy = "items", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<OrderItems> orderItemList = new ArrayList<>();
+	
 	public Long getItemId() {
 		return itemId;
 	}
@@ -76,6 +88,12 @@ public class Menu {
 	public void setItemImageUrl(String itemImageUrl) {
 		this.itemImageUrl = itemImageUrl;
 	}
+	public List<OrderItems> getOrderItemList() {
+		return orderItemList;
+	}
+	public void setOrderItemList(List<OrderItems> orderItemList) {
+		this.orderItemList = orderItemList;
+	}
 	public Menu() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -91,6 +109,20 @@ public class Menu {
 		this.itemIsAvailable = itemIsAvailable;
 		this.itemImage = itemImage;
 		this.itemImageUrl = itemImageUrl;
+	}
+	
+	public Menu(Long itemId, String itemName, String itemDescription, String itemPrice, String itemType,
+			Boolean itemIsAvailable, String itemImage, String itemImageUrl, List<OrderItems> orderItemList) {
+		super();
+		this.itemId = itemId;
+		this.itemName = itemName;
+		this.itemDescription = itemDescription;
+		this.itemPrice = itemPrice;
+		this.itemType = itemType;
+		this.itemIsAvailable = itemIsAvailable;
+		this.itemImage = itemImage;
+		this.itemImageUrl = itemImageUrl;
+		this.orderItemList = orderItemList;
 	}
 	
 }
