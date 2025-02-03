@@ -27,19 +27,22 @@ const Signup = () => {
     }
 
     try {
-      const response = await fetch(import.meta.env.VITE_API_URL + "/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username,
-          userEmail,
-          password,
-          phoneNo,
-          role,
-        }),
-      });
+      const response = await fetch(
+        import.meta.env.VITE_API_URL + "/user/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            userEmail,
+            password,
+            phoneNo,
+            role,
+          }),
+        }
+      );
 
       if (response.ok) {
         navigate("/login");
