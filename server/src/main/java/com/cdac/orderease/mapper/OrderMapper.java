@@ -10,6 +10,7 @@ public class OrderMapper {
 		order.setOrderStatus(orderDto.getOrderStatus());
 		order.setOrderDateTime(orderDto.getOrderDateTime());
 		order.setUser(orderDto.getUser());
+		order.setOrderItemsList(orderDto.getOrderItemList());
 		return order;
 	}
 	
@@ -19,6 +20,7 @@ public class OrderMapper {
 		orderDto.setOrderStatus(order.getOrderStatus());
 		orderDto.setOrderDateTime(order.getOrderDateTime());
 		orderDto.setUser(order.getUser());
+		orderDto.setOrderItemList(order.getOrderItemsList());
 		return orderDto;
 	}
 }

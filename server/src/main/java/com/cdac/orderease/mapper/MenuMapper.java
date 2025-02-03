@@ -14,6 +14,7 @@ public class MenuMapper {
 		menu.setItemType(menuDto.getItemType());
 		menu.setItemImage(menuDto.getItemImage());
 		menu.setItemImageUrl(menuDto.getItemImageUrl());
+		menu.setOrderItemList(menuDto.getOrderItemList());
 		return menu;
 	}
 	public static MenuDTO mapMenuToMenuDto(Menu menu) {
@@ -26,6 +27,7 @@ public class MenuMapper {
 		menuDto.setItemType(menu.getItemType());
 		menuDto.setItemImage(menu.getItemImage());
 		menuDto.setItemImageUrl(menu.getItemImageUrl());
+		menuDto.setOrderItemList(menu.getOrderItemList());
 		return menuDto;
 	}
 }
