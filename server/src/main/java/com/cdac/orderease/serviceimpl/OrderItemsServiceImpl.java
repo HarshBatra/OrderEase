@@ -1,6 +1,7 @@
 package com.cdac.orderease.serviceimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.cdac.orderease.dto.OrderItemsDTO;
 import com.cdac.orderease.entity.OrderItems;
@@ -8,6 +9,7 @@ import com.cdac.orderease.mapper.OrderItemsMapper;
 import com.cdac.orderease.repository.OrderItemsRepository;
 import com.cdac.orderease.service.OrderItemsService;
 
+@Service
 public class OrderItemsServiceImpl implements OrderItemsService {
 
 	@Autowired
@@ -16,8 +18,8 @@ public class OrderItemsServiceImpl implements OrderItemsService {
 	@Override
 	public OrderItemsDTO addOrderItems(OrderItemsDTO orderItemsDTO) {
 		OrderItems orderItems = OrderItemsMapper.mapOrderItemsDtoToOrderItems(orderItemsDTO);
-		orderItemsRepository.save(orderItems);
-		return null;
+		OrderItems savedOrderItems = orderItemsRepository.save(orderItems);
+		return OrderItemsMapper.mapOrderItemsToOrderItemsDto(savedOrderItems);
 	}
 	
 }

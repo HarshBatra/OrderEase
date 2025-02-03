@@ -3,6 +3,7 @@ package com.cdac.orderease.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ public class OrderItemsController {
 	@Autowired
 	private OrderItemsService orderItemsService;
 	
+	@PostMapping("/add")
 	public ResponseEntity<OrderItemsDTO> addOrderItems(@RequestBody OrderItemsDTO orderItemsDTO) {
 		OrderItemsDTO savedOrderItem = orderItemsService.addOrderItems(orderItemsDTO);
 		return ResponseEntity.status(HttpStatus.CREATED).body(savedOrderItem);
