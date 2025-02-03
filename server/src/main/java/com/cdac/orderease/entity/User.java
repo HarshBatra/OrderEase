@@ -1,15 +1,21 @@
 package com.cdac.orderease.entity;
 
-import com.cdac.orderease.enums.UserRoles;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.cdac.orderease.enums.UserRoles;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 @Entity
-@Table(name = "User")
+@Table(name = "users")
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +31,10 @@ public class User {
 	private String phoneNo;
 	@Column(name = "roles")
 	private UserRoles roles;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<Order> orderList = new ArrayList<>();
 	
 	public Long getUserId() {
 		return userId;
@@ -61,6 +71,12 @@ public class User {
 	}
 	public void setRoles(UserRoles roles) {
 		this.roles = roles;
+	}
+	public List<Order> getOrderList() {
+		return orderList;
+	}
+	public void setOrderList(List<Order> orderList) {
+		this.orderList = orderList;
 	}
 	public User() {
 		super();
