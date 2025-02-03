@@ -73,14 +73,14 @@ const Menu = () => {
           return <MenuItem key={item.itemId} item={item} quantity={quantity} />;
         })}
       </div>
-      <Link to="/cart">
-        <div
-          onClick={() => setFilter("all")}
-          className="px-8 py-2 my-4 w-fit cursor-pointer mx-auto text-base text-center hover:text-primary bg-primary hover:bg-secondary rounded-full"
-        >
+      <div
+        onClick={() => setFilter("all")}
+        className="px-8 py-2 my-4 w-fit cursor-pointer mx-auto text-base text-center hover:text-primary bg-primary hover:bg-secondary rounded-full"
+      >
+        <Link to="/cart" className="px-8 py-2">
           Proceed to Cart
-        </div>
-      </Link>
+        </Link>
+      </div>
     </div>
   );
 };
