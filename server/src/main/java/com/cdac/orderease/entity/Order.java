@@ -1,9 +1,13 @@
 package com.cdac.orderease.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.cdac.orderease.enums.OrderStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -29,6 +34,10 @@ public class Order {
 	@JoinColumn(name = "userid")
 	private User user;
 
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<OrderItems> orderItemsList = new ArrayList<>();
+	
 	public Long getOrderId() {
 		return orderId;
 	}
@@ -61,6 +70,14 @@ public class Order {
 		this.user = user;
 	}
 
+	public List<OrderItems> getOrderItemsList() {
+		return orderItemsList;
+	}
+
+	public void setOrderItemsList(List<OrderItems> orderItemsList) {
+		this.orderItemsList = orderItemsList;
+	}
+
 	public Order() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -72,6 +89,16 @@ public class Order {
 		this.orderDateTime = orderDateTime;
 		this.orderStatus = orderStatus;
 		this.user = user;
+	}
+
+	public Order(Long orderId, LocalDateTime orderDateTime, OrderStatus orderStatus, User user,
+			List<OrderItems> orderItemsList) {
+		super();
+		this.orderId = orderId;
+		this.orderDateTime = orderDateTime;
+		this.orderStatus = orderStatus;
+		this.user = user;
+		this.orderItemsList = orderItemsList;
 	}
 	
 }
