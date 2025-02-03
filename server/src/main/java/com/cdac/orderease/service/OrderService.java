@@ -13,4 +13,8 @@ public interface OrderService {
 
 	OrderDTO updateOrder(Long orderId, OrderDTO orderDto) throws OrderNotFoundException;
 
+	OrderDTO getOrderById(Long orderId) throws OrderNotFoundException;
+
+	List<OrderDTO> getAllOrders() throws OrderNotFoundException;	
+
 }

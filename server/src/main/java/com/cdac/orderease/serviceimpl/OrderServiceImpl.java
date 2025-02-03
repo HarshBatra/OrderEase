@@ -22,6 +22,29 @@ public class OrderServiceImpl implements OrderService {
 	OrderRepository orderRepository;
 	
 	@Override
+	public OrderDTO getOrderById(Long orderId) throws OrderNotFoundException {
+		Optional<Order> orderById = orderRepository.findById(orderId);
+		if(orderById.isEmpty()) {
+			throw new OrderNotFoundException("Order with order id : " + orderId + " not found");
+		}
+		Order order = orderById.get();
+		return OrderMapper.mapOrderToOrderDto(order);
+	}
+
+	@Override
+	public List<OrderDTO> getAllOrders() throws OrderNotFoundException {
+		List<Order> allOrders = orderRepository.findAll();
+		if(allOrders.isEmpty()) {
+			throw new OrderNotFoundException("Order's not found");
+		}
+		List<OrderDTO> orderDto = new ArrayList<>();
+		for(Order order : allOrders) {
+			orderDto.add(OrderMapper.mapOrderToOrderDto(order));
+		}
+		return orderDto;
+	}
+
+	@Override
 	public OrderDTO addOrder(OrderDTO orderDto) {
 		Order order = OrderMapper.mapOrderDtoToOrder(orderDto);
 		Order savedOrder = orderRepository.save(order);

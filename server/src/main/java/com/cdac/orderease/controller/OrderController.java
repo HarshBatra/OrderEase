@@ -14,6 +14,7 @@ import com.cdac.orderease.dto.OrderDTO;
 import com.cdac.orderease.exception.OrderNotFoundException;
 import com.cdac.orderease.service.OrderService;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
@@ -23,6 +24,18 @@ public class OrderController {
 	
 	@Autowired
 	OrderService orderService;
+	
+	@GetMapping("/{orderId}")
+	public ResponseEntity<OrderDTO> getSingleOrder(@PathVariable Long orderId) throws OrderNotFoundException {
+		OrderDTO orderDto = orderService.getOrderById(orderId);
+		return ResponseEntity.status(HttpStatus.FOUND).body(orderDto);
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<OrderDTO>> getAllOrders() throws OrderNotFoundException {
+		List<OrderDTO> orderDto = orderService.getAllOrders();
+		return ResponseEntity.status(HttpStatus.FOUND).body(orderDto);
+	}
 	
 	@PostMapping("/add")
 	public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO orderDto) {
