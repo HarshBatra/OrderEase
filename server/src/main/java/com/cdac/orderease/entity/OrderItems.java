@@ -16,18 +16,18 @@ public class OrderItems {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "orderitemid")
-	Long orderItemId;
+	private Long orderItemId;
 	
 	@ManyToOne
 	@JoinColumn(name = "itemid")
-	Menu items;
+	private Menu items;
 	
 	@ManyToOne
 	@JoinColumn(name = "orderid")
-	Order order;
+	private Order order;
 	
 	@Column(name = "quantity")
-	Long quantity;
+	private Long quantity;
 
 	public Long getOrderItemId() {
 		return orderItemId;
