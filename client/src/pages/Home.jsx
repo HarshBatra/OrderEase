@@ -7,7 +7,7 @@ function Home() {
     <div className="bg-base text-gray-900 min-h-screen">
       <section
         className="text-center py-20 bg-cover bg-center relative text-base"
-        style={{ backgroundImage: "url(../../public/assets/cafe2.jpg)" }}
+        style={{ backgroundImage: "url(/assets/cafe2.jpg)" }}
       >
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <h1 className="text-5xl font-bold mb-2 relative drop-shadow-lg">
@@ -79,7 +79,7 @@ function Home() {
 
       <section className="py-10 px-6 text-center md:text-left items-center bg-white flex flex-col md:flex-row space-y-4">
         <img
-          src="../../public/assets/cafe.jpg"
+          src="/assets/cafe.jpg"
           alt="Canteen Image"
           className="rounded-lg shadow-xl md:w-1/3 mx-auto border-white border-4 drop-shadow-xl"
         />

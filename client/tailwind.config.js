@@ -7,8 +7,6 @@ export default {
         primary: "#561F37",
         secondary: "#C3979F",
         base: "#FCFFF7",
-        primary2: "#023C40",
-        secondary2: "#1B998B",
       },
     },
   },
