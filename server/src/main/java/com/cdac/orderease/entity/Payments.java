@@ -12,21 +12,21 @@ public class Payments {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer paymentId;
-	private Integer orderid;
+	private Long paymentId;
+	private Long orderid;
 	private String razorpayOrderId;
 	private Integer amount;
 	private String paymentStatus;
-	public Integer getPaymentId() {
+	public Long getPaymentId() {
 		return paymentId;
 	}
-	public void setPaymentId(Integer paymentId) {
+	public void setPaymentId(Long paymentId) {
 		this.paymentId = paymentId;
 	}
-	public Integer getOrderid() {
+	public Long getOrderid() {
 		return orderid;
 	}
-	public void setOrderid(Integer orderid) {
+	public void setOrderid(Long orderid) {
 		this.orderid = orderid;
 	}
 	public String getRazorpayOrderId() {
@@ -47,5 +47,18 @@ public class Payments {
 	public void setPaymentStatus(String paymentStatus) {
 		this.paymentStatus = paymentStatus;
 	}
-
+	
+	public Payments() {
+		super();
+	}
+	public Payments(Long paymentId, Long orderid, String razorpayOrderId, Integer amount, String paymentStatus) {
+		super();
+		this.paymentId = paymentId;
+		this.orderid = orderid;
+		this.razorpayOrderId = razorpayOrderId;
+		this.amount = amount;
+		this.paymentStatus = paymentStatus;
+	}
+	
+	
 }
