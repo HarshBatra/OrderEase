@@ -10,6 +10,7 @@ import Menu from "./pages/Menu";
 import Cart from "./pages/Cart";
 import Payment from "./pages/Payment";
 import OrderConfirmation from "./pages/OrderConfirmation";
+import UserOrders from "./pages/UserOrders";
 import CurrentOrders from "./pages/CurrentOrders";
 import Admin from "./pages/Admin";
 import AllOrders from "./pages/AllOrders.jsx";
@@ -34,6 +35,7 @@ const App = () => {
                 path="/order-confirmation"
                 element={<OrderConfirmation />}
               />
+              <Route path="/user-orders" element={<UserOrders />} />
               <Route path="/current-orders" element={<CurrentOrders />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/all-orders" element={<AllOrders />} />

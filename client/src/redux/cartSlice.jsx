@@ -44,9 +44,14 @@ const cartSlice = createSlice({
         }
       }
     },
+
+    // Clear all items in the cart
+    clearCart(state) {
+      state.cartItems = []; // Reset the cartItems array to an empty array
+    },
   },
 });
 
-export const { addItemToCart, removeItemFromCart, updateQuantity } =
+export const { addItemToCart, removeItemFromCart, updateQuantity, clearCart } =
   cartSlice.actions;
 export default cartSlice.reducer;
