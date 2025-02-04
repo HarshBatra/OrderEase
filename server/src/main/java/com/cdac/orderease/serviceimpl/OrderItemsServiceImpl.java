@@ -1,5 +1,10 @@
 package com.cdac.orderease.serviceimpl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +25,18 @@ public class OrderItemsServiceImpl implements OrderItemsService {
 		OrderItems orderItems = OrderItemsMapper.mapOrderItemsDtoToOrderItems(orderItemsDTO);
 		OrderItems savedOrderItems = orderItemsRepository.save(orderItems);
 		return OrderItemsMapper.mapOrderItemsToOrderItemsDto(savedOrderItems);
+	}
+
+	@Override
+	public List<OrderItemsDTO> addListOfOrderItems(List<OrderItemsDTO> orderItemsDtoList) {
+		List<OrderItems> orderItemsList = new ArrayList<>();
+		for (OrderItemsDTO dto : orderItemsDtoList) {
+			orderItemsList.add(OrderItemsMapper.mapOrderItemsDtoToOrderItems(dto));
+		}
+		List<OrderItems> savedOrderItemsList = orderItemsRepository.saveAll(orderItemsList);
+		return savedOrderItemsList.stream()
+				.map(OrderItemsMapper::mapOrderItemsToOrderItemsDto)
+				.collect(Collectors.toList());
 	}
 	
 }
