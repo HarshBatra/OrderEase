@@ -17,7 +17,7 @@ import com.cdac.orderease.service.PaymentService;
 import com.razorpay.RazorpayException;
 
 @RestController
-@RequestMapping("/api/payments")  // Base URL for payments API
+@RequestMapping("/payments")  // Base URL for payments API
 @CrossOrigin(origins = "http://localhost:5173")  // Allow React frontend to call this API, need to update as per frontend url
 public class PaymentsController {
 
