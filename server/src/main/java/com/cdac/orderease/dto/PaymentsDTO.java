@@ -1,17 +1,7 @@
-package com.cdac.orderease.entity;
+package com.cdac.orderease.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "Payments")
-public class Payments {
+public class PaymentsDTO {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long paymentId;
 	private Long orderId;
 	private String razorpayOrderId;
@@ -69,7 +59,7 @@ public class Payments {
 	}
 
 	
-	public Payments(Long paymentId, Long orderId, String razorpayOrderId, Double amount, String paymentStatus) {
+	public PaymentsDTO(Long paymentId, Long orderId, String razorpayOrderId, Double amount, String paymentStatus) {
 		super();
 		this.paymentId = paymentId;
 		this.orderId = orderId;
@@ -79,7 +69,7 @@ public class Payments {
 	}
 	
 
-	public Payments() {
+	public PaymentsDTO() {
 		super();
 	}
 

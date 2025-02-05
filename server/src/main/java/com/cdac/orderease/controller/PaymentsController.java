@@ -12,27 +12,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cdac.orderease.entity.Payments;
+import com.cdac.orderease.dto.PaymentsDTO;
 import com.cdac.orderease.service.PaymentService;
 import com.razorpay.RazorpayException;
 
 @RestController
-@RequestMapping("/api/payments")  // Base URL for payments API
-@CrossOrigin(origins = "http://localhost:5173")  // Allow React frontend to call this API, need to update as per frontend url
+@RequestMapping("/payments")
+@CrossOrigin(origins = "http://localhost:5173")  
 public class PaymentsController {
 
     @Autowired
     private PaymentService paymentService;
 
     @PostMapping("/create")
-    public ResponseEntity<Payments> createPayment(@RequestBody Payments payments) throws RazorpayException {
-        Payments razorpayOrder = paymentService.createPayment(payments);
-        return new ResponseEntity<>(razorpayOrder, HttpStatus.CREATED);
+    public ResponseEntity<?> createPayment(@RequestBody PaymentsDTO paymentsDTO) throws RazorpayException {
+        PaymentsDTO createdPayment = paymentService.createPayment(paymentsDTO);
+		return new ResponseEntity<>(createdPayment, HttpStatus.CREATED);
     }
 
     @PostMapping("/callback")
     public ResponseEntity<String> paymentCallback(@RequestParam Map<String, String> response) {
-        paymentService.updateStatus(response);
-        return ResponseEntity.ok("Payment successful");
+        String status = paymentService.updateStatus(response);
+        return ResponseEntity.ok("Payment status updated: " + status);
     }
 }
