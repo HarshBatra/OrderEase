@@ -11,9 +11,6 @@ export const AdminHome = () => {
                 <div className='flex-1 flex justify-center'>
                     <h1 className='font-bold text-4xl'>Menu Update</h1>
                 </div>
-                <div className='flex items-center'>
-                    <Link to="/all-orders" className='bg-primary border rounded text-white p-1'>Show All Menu</Link>
-                </div>
             </div>
 
 
