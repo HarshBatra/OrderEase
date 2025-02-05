@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AdminEditForm({ele}) {
+function AdminEditForm({ ele }) {
     return (
         <div className="w-full">
             <h1 className="text-3xl mt-3 font-bold mb-5 text-center">Edit Menu Item</h1>
@@ -53,6 +53,31 @@ function AdminEditForm({ele}) {
                             defaultValue={ele.itemPrice}
                         />
                     </div>
+
+                    <div className="mb-4">
+                        <label className="block text-xl font-medium mb-2">Category</label>
+                        <div className="flex items-center">
+                            <label className="mr-4 flex items-center">
+                                <input
+                                    className="mr-2"
+                                    type="radio"
+                                    name="category"
+                                    value="veg"
+                                />
+                                Veg
+                            </label>
+                            <label className="flex items-center">
+                                <input
+                                    className="mr-2"
+                                    type="radio"
+                                    name="category"
+                                    value="nonveg"
+                                />
+                                Non-Veg
+                            </label>
+                        </div>
+                    </div>
+
                     <div className="flex items-center justify-center mt-4 mb-4">
                         <span className="text-xs font-medium mx-2">Item Available</span>
                         <label htmlFor="toggle" className="flex items-center cursor-pointer">
