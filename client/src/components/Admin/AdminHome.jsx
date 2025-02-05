@@ -10,9 +10,6 @@ export const AdminHome = () => {
                 <div className='flex-1 flex justify-center'>
                     <h1 className='font-bold text-4xl'>Menu Update</h1>
                 </div>
-                <div className='flex items-center'>
-                    <Link to="/all-orders" className='bg-primary border rounded text-white p-1'>Show All Menu</Link>
-                </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -26,6 +23,9 @@ export const AdminHome = () => {
                         <MenuList />
                     </div>
                 </div>
+            </div>
+            <div className='flex justify-center'>
+                <Link to="/all-orders" className='bg-primary border rounded text-white p-2 mt-3 mb-5'>Show All Menu</Link>
             </div>
         </div>
     )
