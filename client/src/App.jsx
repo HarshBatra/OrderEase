@@ -37,7 +37,6 @@ const App = () => {
               />
               <Route path="/current-orders" element={<CurrentOrders />} />
               <Route path="/admin" element={<Admin />} />
-              <Route path="/admin/edit" element={<AdminItemEdit />} />
               <Route path="/all-orders" element={<AllOrders />} />
               <Route path="*" element={<Error404 />} />
             </Routes>

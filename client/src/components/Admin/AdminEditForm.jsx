@@ -1,10 +1,6 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 
-function AdminEditForm() {
-    const location = useLocation();
-    const itemData = location.state || {};
-
+function AdminEditForm({ele}) {
     return (
         <div className="w-full">
             <h1 className="text-3xl mt-3 font-bold mb-5 text-center">Edit Menu Item</h1>
@@ -18,7 +14,7 @@ function AdminEditForm() {
                             name="mname"
                             id="mname"
                             placeholder="Enter item name"
-                            defaultValue={itemData.itemName}
+                            defaultValue={ele.itemName}
                         />
                     </div>
 
@@ -30,7 +26,7 @@ function AdminEditForm() {
                             name="desc"
                             id="desc"
                             placeholder="Enter item description"
-                            defaultValue={itemData.itemDescription}
+                            defaultValue={ele.itemDescription}
                         />
                     </div>
 
@@ -42,7 +38,7 @@ function AdminEditForm() {
                             name="image"
                             id="image"
                             placeholder="Enter item image url"
-                            defaultValue={itemData.itemImageUrl}
+                            defaultValue={ele.itemImageUrl}
                         />
                     </div>
 
@@ -54,10 +50,18 @@ function AdminEditForm() {
                             name="usp"
                             id="usp"
                             placeholder="Enter item price"
-                            defaultValue={itemData.itemPrice}
+                            defaultValue={ele.itemPrice}
                         />
                     </div>
-
+                    <div className="flex items-center justify-center mt-4 mb-4">
+                        <span className="text-xs font-medium mx-2">Item Available</span>
+                        <label htmlFor="toggle" className="flex items-center cursor-pointer">
+                            <input type="checkbox" id="toggle" name="isAvailable" className="sr-only peer" />
+                            <div className="block bg-primary w-16 h-7 p-0.5 rounded-full relative peer-checked:bg-green-500">
+                                <div className="absolute bg-white w-6 h-6 rounded-full transition-all duration-300 left-1 top-0.5 peer-checked:left-8"></div>
+                            </div>
+                        </label>
+                    </div>
                     <div className="text-center">
                         <button
                             type="submit"
@@ -65,15 +69,6 @@ function AdminEditForm() {
                             Submit
                         </button>
                     </div>
-                    <div class="flex items-center justify-center w-full my-8">
-                        <span class="text-xs mx-5">Toggle me!</span>
-                        <label for="toggle" class="flex items-center cursor-pointer">
-                            <input type="checkbox" id="toggle" name="isAvailale" class="sr-only peer"/>
-                                <div class="block relative bg-blue-900 w-16 h-9 p-1 rounded-full before:absolute before:bg-blue-600 before:w-7 before:h-7 before:p-1 before:rounded-full before:transition-all before:duration-500 before:left-1 peer-checked:before:left-8 peer-checked:before:bg-white"></div>
-                        </label>
-                    </div>
-                    <p class="text-center">PS: you can use margin left classes too (e.g. <i>"before:ml-0.5 peer-checked:before:ml-7"</i>)</p>
-                    <script src="https://cdn.tailwindcss.com/"></script>
                 </form>
             </div>
         </div>
