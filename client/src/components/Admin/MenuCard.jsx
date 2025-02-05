@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdModeEdit } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import EditModal from './EditModal';
 
 function MenuCard({ ele }) {
-    const navigate = useNavigate();
 
-    const handleEdit = () => {
-        navigate("/admin/edit", { state: ele });
-    };
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
 
     return (
         <div className="ml-4 bg-white mr-3 md:p-4 mt-3 items-center border-opacity-30 rounded-lg shadow-lg grid grid-cols-6 gap-1">
@@ -26,10 +26,13 @@ function MenuCard({ ele }) {
                 <button>
                     <RiDeleteBin6Line className='ml-3' />
                 </button>
-                <button onClick={handleEdit}>
+                <button onClick={openModal}>
                     <MdModeEdit className='mr-1 md:ml-5' />
                 </button>
             </div>
+            {isModalOpen && (
+                <EditModal closeModal={closeModal} ele={ele} />
+            )}
         </div>
     );
 }
