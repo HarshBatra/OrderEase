@@ -87,11 +87,26 @@ const UserOrderCard = ({ order }) => {
   return (
     <div className="p-4 mb-4 bg-white rounded-lg shadow-md flex justify-between items-start">
       <div className="flex-1">
-        <h3 className="text-xl font-semibold text-primary">
-          Order #{order.orderId}
-        </h3>
-        <div className="text-sm text-secondary">
-          <p>{new Date(order.orderDateTime).toLocaleString()}</p>
+        <div className="flex justify-between items-center">
+          <div className="flex flex-col">
+            <h3 className="text-xl font-semibold text-primary">
+              Order #{order.orderId}
+            </h3>
+            <div className="text-sm text-secondary">
+              <p>{new Date(order.orderDateTime).toLocaleString()}</p>
+            </div>
+          </div>
+          <div
+            className={`text-center p-2 rounded-md ${
+              order.status === "PLACED"
+                ? "bg-yellow-100 text-yellow-500"
+                : order.status === "PREPARING"
+                ? "bg-orange-100 text-orange-500"
+                : "bg-green-100 text-green-500"
+            }`}
+          >
+            {order.status}
+          </div>
         </div>
 
         <div className="mt-4 space-y-2">
@@ -111,20 +126,6 @@ const UserOrderCard = ({ order }) => {
         <div className="mt-4 flex justify-between text-xl font-semibold text-primary">
           <span>Total</span>
           <span>${totalAmount.toFixed(2)}</span>
-        </div>
-      </div>
-
-      <div className="flex">
-        <div
-          className={`text-center p-2 rounded-md ${
-            order.status === "PLACED"
-              ? "bg-yellow-100 text-yellow-500"
-              : order.status === "PREPARING"
-              ? "bg-orange-100 text-orange-500"
-              : "bg-green-100 text-green-500"
-          }`}
-        >
-          {order.status}
         </div>
       </div>
     </div>
