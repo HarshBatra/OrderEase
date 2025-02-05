@@ -6,7 +6,13 @@ spring:
     url: jdbc:mysql://localhost:3306/orderease
     username: root
     password: s24102000
+
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+razorpay:
+  key:
+    id: rzp_test_BLuYvjyR58WQhz
+    secret: 14ky5Qi7mold02me9OzbC3fR

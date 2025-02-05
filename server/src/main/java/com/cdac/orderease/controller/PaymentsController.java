@@ -25,9 +25,9 @@ public class PaymentsController {
     private PaymentService paymentService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createPayment(@RequestBody PaymentsDTO paymentsDTO) throws RazorpayException {
+    public ResponseEntity<PaymentsDTO> createPayment(@RequestBody PaymentsDTO paymentsDTO) throws RazorpayException {
         PaymentsDTO createdPayment = paymentService.createPayment(paymentsDTO);
-		return new ResponseEntity<>(createdPayment, HttpStatus.CREATED);
+		return ResponseEntity.status(HttpStatus.CREATED).body(createdPayment);
     }
 
     @PostMapping("/callback")

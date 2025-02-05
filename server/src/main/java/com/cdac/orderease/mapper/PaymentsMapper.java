@@ -4,8 +4,6 @@ import com.cdac.orderease.dto.PaymentsDTO;
 import com.cdac.orderease.entity.Payments;
 
 public class PaymentsMapper {
-    //mapOrderDtoToOrder
-//	mapPaymentsDTOtoPayments
     public static PaymentsDTO mapPaymentstoPaymentsDTO(Payments payments) {
         if (payments == null) {
             return null;

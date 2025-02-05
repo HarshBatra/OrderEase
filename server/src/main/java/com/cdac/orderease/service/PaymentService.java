@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.cdac.orderease.dto.PaymentsDTO;
 import com.cdac.orderease.entity.Payments;
+import com.cdac.orderease.enums.PaymentStatus;
 import com.cdac.orderease.mapper.PaymentsMapper;
 import com.cdac.orderease.repository.PaymentRepository;
 import com.razorpay.Order;
@@ -81,8 +82,7 @@ public class PaymentService {
             logger.warn("Payment record not found for Razorpay Order ID: {}", razorpayOrderId);
             return "Payment record not found";
         }
-
-        payment.setPaymentStatus("PAYMENT DONE");
+        payment.setPaymentStatus(PaymentStatus.DONE);
         paymentRepository.save(payment);
 
         return "Payment status updated successfully";
