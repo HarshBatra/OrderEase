@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.cdac.orderease.config.RazorpayConfig;
 import com.cdac.orderease.dto.PaymentsDTO;
 import com.cdac.orderease.entity.Payments;
 import com.cdac.orderease.enums.PaymentStatus;
@@ -23,6 +24,13 @@ import jakarta.annotation.PostConstruct;
 @Service
 public class PaymentService {
     
+//	public final RazorpayConfig razorpayConfig;
+//	
+//	public PaymentService(RazorpayConfig razorpayConfig) {
+//		// TODO Auto-generated constructor stub
+//		this.razorpayConfig = razorpayConfig;
+//	}
+	
     private static final Logger logger = LoggerFactory.getLogger(PaymentService.class);
 
     @Autowired
@@ -39,7 +47,8 @@ public class PaymentService {
     @PostConstruct
     public void init() {
         try {
-            this.razorpayClient = new RazorpayClient(razorpayId, razorpaySecret);
+//            this.razorpayClient = new RazorpayClient(razorpayConfig.getId(), razorpayConfig.getSecret());
+        	this.razorpayClient = new RazorpayClient(razorpayId, razorpaySecret);
         } catch (RazorpayException e) {
             logger.error("Error initializing Razorpay client: {}", e.getMessage());
         }
