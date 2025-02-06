@@ -1,7 +1,10 @@
 import React from "react";
+import CurrentOrdersC from "../components/CurrentOrdersC";
 
 const CurrentOrders = () => {
-  return <div>CurrentOrders</div>;
+  return <div>
+    <CurrentOrdersC/>
+  </div>;
 };
 
 export default CurrentOrders;
