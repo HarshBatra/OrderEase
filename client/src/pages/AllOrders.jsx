@@ -1,38 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 
-const orders = [
-  {
-    orderId: "ORD12345",
-    amount: "₹500",
-    date: "2025-02-06",
-    items: ["Burger", "Fries", "Coke"],
-  },
-  {
-    orderId: "ORD67890",
-    amount: "₹350",
-    date: "2025-02-05",
-    items: ["Pizza", "Garlic Bread", "Burger"],
-  },
-  {
-    orderId: "ORD54321",
-    amount: "₹750",
-    date: "2025-02-04",
-    items: ["Pasta", "Salad", "Lemonade", "Fries", "Burger"],
-  },
-  {
-    orderId: "ORD98765",
-    amount: "₹600",
-    date: "2025-02-03",
-    items: ["Burger", "Fries", "Pizza"],
-  },
-];
+const API_URL = "http://localhost:8080/order";
+
+const fetchOrders = async (setOrders, setSortedOrders) => {
+  try {
+    const response = await fetch(API_URL);
+    const data = await response.json();
+
+    const transformedOrders = data.map((order) => ({
+      orderId: `ORD${order.orderId}`,
+      amount: `₹${order.orderItemList.reduce(
+        (total, item) => total + parseFloat(item.items.itemPrice) * item.quantity,
+        0
+      ).toFixed(2)}`,
+      date: order.orderDateTime.split("T")[0], // Extract YYYY-MM-DD
+      items: order.orderItemList.map((item) => item.items.itemName),
+    }));
+
+    setOrders(transformedOrders);
+    setSortedOrders(transformedOrders);
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+  }
+};
 
 const calculateTotal = (filteredOrders) => {
   return filteredOrders.reduce(
-    (total, order) => total + parseInt(order.amount.replace("₹", ""), 10),
+    (total, order) => total + parseFloat(order.amount.replace("₹", "")),
     0
-  );
+  ).toFixed(2);
 };
 
 const countItemsSold = (filteredOrders) => {
@@ -46,9 +43,14 @@ const countItemsSold = (filteredOrders) => {
 };
 
 const AllOrders = () => {
-  const [sortedOrders, setSortedOrders] = useState(orders);
+  const [orders, setOrders] = useState([]);
+  const [sortedOrders, setSortedOrders] = useState([]);
   const [sortType, setSortType] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
+
+  useEffect(() => {
+    fetchOrders(setOrders, setSortedOrders);
+  }, []);
 
   const sortOrders = (type) => {
     let sorted = [...sortedOrders];
@@ -61,16 +63,12 @@ const AllOrders = () => {
         break;
       case "price-asc":
         sorted.sort(
-          (a, b) =>
-            parseInt(a.amount.replace("₹", ""), 10) -
-            parseInt(b.amount.replace("₹", ""), 10)
+          (a, b) => parseFloat(a.amount.replace("₹", "")) - parseFloat(b.amount.replace("₹", ""))
         );
         break;
       case "price-desc":
         sorted.sort(
-          (a, b) =>
-            parseInt(b.amount.replace("₹", ""), 10) -
-            parseInt(a.amount.replace("₹", ""), 10)
+          (a, b) => parseFloat(b.amount.replace("₹", "")) - parseFloat(a.amount.replace("₹", ""))
         );
         break;
       default:
@@ -142,9 +140,11 @@ const AllOrders = () => {
                     </div>
                     <p className="text-gray-600">Date: {order.date}</p>
                     <ul className="list-disc list-inside text-gray-700">
-                      {order.items.map((item, index) => (
-                        <li key={index}>{item}</li>
-                      ))}
+                      {order.items.length > 0 ? (
+                        order.items.map((item, index) => <li key={index}>{item}</li>)
+                      ) : (
+                        <li>No items in this order</li>
+                      )}
                     </ul>
                   </div>
                 ))
