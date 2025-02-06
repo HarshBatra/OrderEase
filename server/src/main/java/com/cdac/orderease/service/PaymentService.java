@@ -1,6 +1,8 @@
 package com.cdac.orderease.service;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -45,6 +47,7 @@ public class PaymentService {
     }
     
     public PaymentsDTO createPayment(PaymentsDTO paymentDTO) {
+    	System.out.println(paymentDTO);
         try {
             JSONObject options = new JSONObject();
             options.put("amount", paymentDTO.getAmount() * 100); // Convert amount to paise
@@ -55,10 +58,13 @@ public class PaymentService {
 
             if (razorpayOrder != null) {
                 Payments payment = PaymentsMapper.mapPaymentsDTOtoPayments(paymentDTO);
+                System.out.println(payment);
                 payment.setRazorpayOrderId(razorpayOrder.get("id"));
                 payment.setPaymentStatus(razorpayOrder.get("status"));
-
+                
                 Payments savedPayment = paymentRepository.save(payment);
+//                System.out.println(savedPayment);
+//            	System.out.println(paymentDTO);
                 return PaymentsMapper.mapPaymentstoPaymentsDTO(savedPayment);
             }
         } catch (RazorpayException e) {
@@ -87,4 +93,18 @@ public class PaymentService {
 
         return "Payment status updated successfully";
     }
+    
+    public Optional<PaymentsDTO> findPaymentById(Long paymentId) {
+        Optional<Payments> paymentOptional = paymentRepository.findById(paymentId);
+        return paymentOptional.map(PaymentsMapper::mapPaymentstoPaymentsDTO);
+    }
+
+    // Method to get all payments
+    public List<PaymentsDTO> getAllPayments() {
+        List<Payments> payments = paymentRepository.findAll();
+        return payments.stream()
+                       .map(PaymentsMapper::mapPaymentstoPaymentsDTO)
+                       .toList();
+    }
+
 }
