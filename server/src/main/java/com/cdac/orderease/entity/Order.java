@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import com.cdac.orderease.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
