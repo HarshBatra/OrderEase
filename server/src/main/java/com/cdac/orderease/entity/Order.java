@@ -21,23 +21,26 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "orders")
 public class Order {
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "orderid")
-	private Long orderId;
-	@Column(name = "orderdatetime")
-	private LocalDateTime orderDateTime;
-	@Column(name = "orderstatus")
-	private OrderStatus orderStatus;
-	
-	@ManyToOne
-	@JoinColumn(name = "userid")
-	private User user;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "orderid")
+    private Long orderId;
+    
+    @Column(name = "orderdatetime")
+    private LocalDateTime orderDateTime;
+    
+    @Column(name = "orderstatus")
+    private OrderStatus orderStatus;
+    
+    @ManyToOne
+    @JoinColumn(name = "userid")
+    private User user;
 
-	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-	@JsonIgnore
-	private List<OrderItems> orderItemsList = new ArrayList<>();
-	
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<OrderItems> orderItemsList = new ArrayList<>();
+
 	public Long getOrderId() {
 		return orderId;
 	}

@@ -1,9 +1,11 @@
 package com.cdac.orderease.dto;
 
+import com.cdac.orderease.entity.Order;
+
 public class PaymentsDTO {
 	
 	private Long paymentId;
-	private Long orderId;
+	private Order orderId;
 	private String razorpayOrderId;
 	private Double amount;
 	private String paymentStatus;
@@ -19,12 +21,12 @@ public class PaymentsDTO {
 	}
 
 
-	public Long getOrderId() {
+	public Order getOrderId() {
 		return orderId;
 	}
 
 
-	public void setOrderId(Long orderId) {
+	public void setOrderId(Order orderId) {
 		this.orderId = orderId;
 	}
 
@@ -59,10 +61,10 @@ public class PaymentsDTO {
 	}
 
 	
-	public PaymentsDTO(Long paymentId, Long orderId, String razorpayOrderId, Double amount, String paymentStatus) {
+	public PaymentsDTO(Long paymentId, Order order, String razorpayOrderId, Double amount, String paymentStatus) {
 		super();
 		this.paymentId = paymentId;
-		this.orderId = orderId;
+		this.orderId = order;
 		this.razorpayOrderId = razorpayOrderId;
 		this.amount = amount;
 		this.paymentStatus = paymentStatus;
