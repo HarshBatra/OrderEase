@@ -14,7 +14,6 @@ import CurrentOrders from "./pages/CurrentOrders";
 import Admin from "./pages/Admin";
 import AllOrders from "./pages/AllOrders.jsx";
 import Error404 from "./pages/Error404";
-import AdminItemEdit from "./components/Admin/AdminItemEdit.jsx";
 
 const App = () => {
   return (
