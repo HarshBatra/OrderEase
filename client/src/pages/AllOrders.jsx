@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 
-const API_URL = "http://localhost:8080/order";
-
 const fetchOrders = async (setOrders, setSortedOrders) => {
   try {
-    const response = await fetch(API_URL);
+    const response = await fetch(import.meta.env.VITE_API_URL + "/order");
     const data = await response.json();
 
     const transformedOrders = data.map((order) => ({
       orderId: `ORD${order.orderId}`,
-      amount: `₹${order.orderItemList.reduce(
-        (total, item) => total + parseFloat(item.items.itemPrice) * item.quantity,
-        0
-      ).toFixed(2)}`,
-      date: order.orderDateTime.split("T")[0], // Extract YYYY-MM-DD
+      amount: `₹${order.orderItemList
+        .reduce(
+          (total, item) =>
+            total + parseFloat(item.items.itemPrice) * item.quantity,
+          0
+        )
+        .toFixed(2)}`,
+      date: order.orderDateTime.split("T")[0],
       items: order.orderItemList.map((item) => item.items.itemName),
     }));
 
@@ -26,10 +27,12 @@ const fetchOrders = async (setOrders, setSortedOrders) => {
 };
 
 const calculateTotal = (filteredOrders) => {
-  return filteredOrders.reduce(
-    (total, order) => total + parseFloat(order.amount.replace("₹", "")),
-    0
-  ).toFixed(2);
+  return filteredOrders
+    .reduce(
+      (total, order) => total + parseFloat(order.amount.replace("₹", "")),
+      0
+    )
+    .toFixed(2);
 };
 
 const countItemsSold = (filteredOrders) => {
@@ -63,12 +66,16 @@ const AllOrders = () => {
         break;
       case "price-asc":
         sorted.sort(
-          (a, b) => parseFloat(a.amount.replace("₹", "")) - parseFloat(b.amount.replace("₹", ""))
+          (a, b) =>
+            parseFloat(a.amount.replace("₹", "")) -
+            parseFloat(b.amount.replace("₹", ""))
         );
         break;
       case "price-desc":
         sorted.sort(
-          (a, b) => parseFloat(b.amount.replace("₹", "")) - parseFloat(a.amount.replace("₹", ""))
+          (a, b) =>
+            parseFloat(b.amount.replace("₹", "")) -
+            parseFloat(a.amount.replace("₹", ""))
         );
         break;
       default:
@@ -82,7 +89,9 @@ const AllOrders = () => {
       setSortedOrders(orders);
       return;
     }
-    const filteredOrders = orders.filter((order) => order.date === selectedDate);
+    const filteredOrders = orders.filter(
+      (order) => order.date === selectedDate
+    );
     setSortedOrders(filteredOrders);
   };
 
@@ -94,8 +103,8 @@ const AllOrders = () => {
   const itemCounts = countItemsSold(sortedOrders);
 
   return (
-    <>
-      <section className="pt-20 px-6 bg-base">
+    <div className="p-10">
+      <section>
         <h2 className="text-4xl font-bold text-center text-primary mb-12">
           All Orders
         </h2>
@@ -136,12 +145,16 @@ const AllOrders = () => {
                       <span className="font-semibold">
                         OrderId: {order.orderId}
                       </span>
-                      <span className="font-semibold">Amount: {order.amount}</span>
+                      <span className="font-semibold">
+                        Amount: {order.amount}
+                      </span>
                     </div>
                     <p className="text-gray-600">Date: {order.date}</p>
                     <ul className="list-disc list-inside text-gray-700">
                       {order.items.length > 0 ? (
-                        order.items.map((item, index) => <li key={index}>{item}</li>)
+                        order.items.map((item, index) => (
+                          <li key={index}>{item}</li>
+                        ))
                       ) : (
                         <li>No items in this order</li>
                       )}
@@ -149,7 +162,9 @@ const AllOrders = () => {
                   </div>
                 ))
               ) : (
-                <p className="text-center text-gray-600">No orders found for selected date.</p>
+                <p className="text-center text-gray-600">
+                  No orders found for selected date.
+                </p>
               )}
             </div>
           </div>
@@ -190,7 +205,7 @@ const AllOrders = () => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

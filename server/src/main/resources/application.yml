@@ -3,9 +3,9 @@ spring:
     name: SERVER
 
   datasource:
-    url: jdbc:mysql://localhost:3306/<db-name>
-    username: <db-username>
-    password: <db-password>
+    url: jdbc:mysql://localhost:3306/orderease
+    username: root
+    password: harsh2222
   jpa:
     hibernate:
       ddl-auto: update

@@ -1,58 +1,38 @@
 import React, { useEffect, useState } from "react";
-import UserOrderCard from "../components/UserOrderCard"; // Import UserOrderCard
-import { Spinner } from "../components/Spinner"; // You can add a spinner for loading state
+import UserOrderCard from "../components/UserOrderCard";
+import { Spinner } from "../components/Spinner";
 
 const UserOrders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Dummy data for testing
-  const dummyOrders = [
-    {
-      orderId: "ORD123456",
-      orderDateTime: "2025-02-04T10:00:00Z",
-      status: "PLACED",
-      userId: "USER1",
-    },
-    {
-      orderId: "ORD1234567",
-      orderDateTime: "2025-02-03T14:30:00Z",
-      status: "PREPARING",
-      userId: "USER1",
-    },
-    {
-      orderId: "ORD12345678",
-      orderDateTime: "2025-02-03T14:30:00Z",
-      status: "READY",
-      userId: "USER1",
-    },
-  ];
-
   const fetchOrders = async () => {
     try {
-      // Commented out the real API call
-      // const response = await fetch(`/order/${userId}`);
-      // if (!response.ok) throw new Error("Failed to fetch orders.");
-      // const data = await response.json();
+      const userId = 1;
+      const response = await fetch(
+        import.meta.env.VITE_API_URL + `/order/user/${userId}`
+      );
 
-      // Using dummy data for testing
-      await setTimeout(() => {
-        setOrders(dummyOrders);
-        setLoading(false);
-      }, 3000);
+      if (!response.ok) {
+        throw new Error(`HTTP Error: ${response.status}`);
+      }
+      const contentType = response.headers.get("Content-Type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("Response is not JSON");
+      }
+      const data = await response.json();
+      setOrders(data);
+      setLoading(false);
     } catch (err) {
-      setError(err.message);
+      setError(err.message); // Show error message
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchOrders();
   }, []);
-
-  if (loading) {
-    return <Spinner />;
-  }
 
   if (error) {
     return <div className="text-center text-red-500">{error}</div>;

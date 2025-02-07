@@ -25,7 +25,7 @@ const PaymentPage = () => {
       quantity: item.quantity,
     }));
 
-    const response = await fetch("http://localhost:8080/order/add", {
+    const response = await fetch(import.meta.env.VITE_API_URL + "/order/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,23 +52,26 @@ const PaymentPage = () => {
   const createOrderItems = async (orderId) => {
     const orderItemsList = cartItems.map((item) => ({
       items: {
-        itemId: item.itemId, // itemId from cartItems
+        itemId: item.itemId,
       },
-      quantity: item.quantity, // quantity from cartItems
+      quantity: item.quantity,
       order: {
-        orderId, // orderId from the order
+        orderId,
       },
     }));
 
-    console.log(orderItemsList); // Check if this is correct
+    console.log(orderItemsList);
 
-    const response = await fetch("http://localhost:8080/orderitems/addList", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(orderItemsList), // Sending the array of items
-    });
+    const response = await fetch(
+      import.meta.env.VITE_API_URL + "/orderitems/addList",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderItemsList),
+      }
+    );
 
     if (response.ok) {
       const orderItemsList = await response.json();
@@ -81,16 +84,19 @@ const PaymentPage = () => {
 
   const createPayment = async (orderId) => {
     try {
-      const response = await fetch("http://localhost:8080/payments/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          orderId,
-          amount: totalAmount,
-        }),
-      });
+      const response = await fetch(
+        import.meta.env.VITE_API_URL + "/payments/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            orderId,
+            amount: totalAmount,
+          }),
+        }
+      );
 
       const payment = await response.json();
       return payment;
@@ -106,14 +112,14 @@ const PaymentPage = () => {
 
     const orderData = await createOrder();
     if (orderData) {
-      setOrderData(orderData); // Ensure the order data is set correctly.
+      setOrderData(orderData);
       const orderItemsList = await createOrderItems(orderData.orderId);
 
       const payment = await createPayment(orderData.orderId);
       if (payment) {
         const options = {
           key: "rzp_test_BLuYvjyR58WQhz",
-          amount: payment.amount * 100, // Razorpay expects the amount in paise
+          amount: payment.amount * 100,
           currency: "INR",
           name: "OrderEase",
           description: "Payment for cart items",
@@ -151,7 +157,7 @@ const PaymentPage = () => {
       <div className="space-y-4 mb-6">
         <div className="flex justify-between items-center text-lg text-primary">
           <span>Total Amount</span>
-          <span className="font-semibold">${totalAmount.toFixed(2)}</span>
+          <span className="font-semibold">Rs.{totalAmount.toFixed(2)}</span>
         </div>
       </div>
 
