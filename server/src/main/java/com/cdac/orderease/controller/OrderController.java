@@ -56,4 +56,11 @@ public class OrderController {
 		OrderDTO savedOrder = orderService.updateOrder(orderId, orderDto);
 		return ResponseEntity.ok(savedOrder);
 	}
+	
+	@GetMapping("/user/{userId}")
+	public ResponseEntity<List<OrderDTO>> getOrdersByUserId(@PathVariable Long userId) throws OrderNotFoundException {
+	    List<OrderDTO> userOrders = orderService.getOrdersByUserId(userId);
+	    return ResponseEntity.status(HttpStatus.OK).body(userOrders);
+	}
+
 }

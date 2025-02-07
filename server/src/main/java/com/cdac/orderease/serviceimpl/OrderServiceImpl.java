@@ -75,4 +75,15 @@ public class OrderServiceImpl implements OrderService {
 		return OrderMapper.mapOrderToOrderDto(savedOrder);
 	}
 	
+	@Override
+	public List<OrderDTO> getOrdersByUserId(Long userId) throws OrderNotFoundException {
+	    List<Order> userOrders = orderRepository.findByUserUserId(userId);
+	    if (userOrders.isEmpty()) {
+	        throw new OrderNotFoundException("No orders found for user with ID: " + userId);
+	    }
+	    return userOrders.stream()
+	            .map(OrderMapper::mapOrderToOrderDto)
+	            .collect(Collectors.toList());
+	}
+	
 }
