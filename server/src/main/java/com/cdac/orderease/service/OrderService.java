@@ -15,6 +15,8 @@ public interface OrderService {
 
 	OrderDTO getOrderById(Long orderId) throws OrderNotFoundException;
 
-	List<OrderDTO> getAllOrders() throws OrderNotFoundException;	
+	List<OrderDTO> getAllOrders() throws OrderNotFoundException;
+
+	List<OrderDTO> getOrdersByUserId(Long userId) throws OrderNotFoundException;	
 
 }
