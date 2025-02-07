@@ -12,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,8 +29,11 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "orderid")
 	private Long orderId;
+	
 	@Column(name = "orderdatetime")
 	private LocalDateTime orderDateTime;
+	
+	@Enumerated(EnumType.STRING)
 	@Column(name = "orderstatus")
 	private OrderStatus orderStatus;
 	

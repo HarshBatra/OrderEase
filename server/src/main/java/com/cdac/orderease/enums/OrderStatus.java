@@ -5,5 +5,4 @@ public enum OrderStatus {
 	PREPARING,
 	READY,
 	DONE
-	
 }
