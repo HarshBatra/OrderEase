@@ -19,7 +19,7 @@ const MenuItem = ({ item, quantity }) => {
     }
   };
 
-  const circleColor = item.itemType === "veg" ? "bg-green-500" : "bg-red-500";
+  const circleColor = item.itemType === "Veg" ? "bg-green-500" : "bg-red-500";
 
   return (
     <div className="flex bg-white p-4 rounded-lg shadow-lg md:my-4 my-2 relative">
@@ -38,7 +38,7 @@ const MenuItem = ({ item, quantity }) => {
         <p className="text-sm text-secondary">{item.itemDescription}</p>
         <div className="flex justify-between items-center mt-2">
           <span className="text-xl text-primary font-bold">
-            Rs.{item.itemPrice.toFixed(2)}
+            Rs.{item.itemPrice}
           </span>
           <div className="flex items-center space-x-2">
             {quantity === 0 ? (
