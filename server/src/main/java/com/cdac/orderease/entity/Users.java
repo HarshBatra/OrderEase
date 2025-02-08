@@ -2,39 +2,49 @@ package com.cdac.orderease.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
-import com.cdac.orderease.enums.UserRoles;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 @Entity
 @Table(name = "users")
-public class User {
+public class Users {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "userid")
 	private Long userId;
+	
 	@Column(name = "username")
 	private String username;
+	
 	@Column(name = "useremail")
 	private String userEmail;
+	
 	@Column(name = "userpassword")
 	private String password;
+	
 	@Column(name = "phoneNo")
 	private String phoneNo;
-	@Column(name = "roles")
-	private UserRoles roles;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<Order> orderList = new ArrayList<>();
+	
+	@Column(name = "role")
+	private String role;
 	
 	public Long getUserId() {
 		return userId;
@@ -66,11 +76,12 @@ public class User {
 	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
 	}
-	public UserRoles getRoles() {
-		return roles;
+		
+	public String getRole() {
+		return role;
 	}
-	public void setRoles(UserRoles roles) {
-		this.roles = roles;
+	public void setRole(String role) {
+		this.role = role;
 	}
 	public List<Order> getOrderList() {
 		return orderList;
@@ -78,17 +89,16 @@ public class User {
 	public void setOrderList(List<Order> orderList) {
 		this.orderList = orderList;
 	}
-	public User() {
+	public Users() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public User(Long userId, String username, String userEmail, String password, String phoneNo, UserRoles roles) {
+	public Users(Long userId, String username, String userEmail, String password, String phoneNo, String roles) {
 		super();
 		this.userId = userId;
 		this.username = username;
 		this.userEmail = userEmail;
 		this.password = password;
 		this.phoneNo = phoneNo;
-		this.roles = roles;
+		this.role = roles;
 	}
 }
