@@ -25,6 +25,10 @@ const Navbar = () => {
     setIsLoggedIn(token !== null && token !== "");
   }, [localStorage.getItem("token")]);
 
+  // Get user role from localStorage
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userRole = user ? user.role : null;
+
   return (
     <nav className="bg-primary shadow-md w-full">
       <div className="max-w-screen-xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -48,9 +52,24 @@ const Navbar = () => {
               Login
             </Link>
           )}
-          <Link to="menu" className="hover:text-white text-secondary">
-            Menu
-          </Link>
+          {/* Dynamically render the Menu based on user role */}
+          {userRole === "USER" ? (
+            <Link to="/menu" className="hover:text-white text-secondary">
+              Menu
+            </Link>
+          ) : userRole === "STAFF" ? (
+            <Link
+              to="/current-orders"
+              className="hover:text-white text-secondary"
+            >
+              Staff
+            </Link>
+          ) : userRole === "ADMIN" ? (
+            <Link to="/admin" className="hover:text-white text-secondary">
+              Admin
+            </Link>
+          ) : null}
+
           <Link to="contact" className="hover:text-white text-secondary">
             Contact
           </Link>
@@ -101,13 +120,32 @@ const Navbar = () => {
             Login
           </Link>
         )}
-        <Link
-          to="menu"
-          className="hover:text-white text-secondary block"
-          onClick={closeMenu}
-        >
-          Menu
-        </Link>
+        {/* Dynamically render the Menu based on user role */}
+        {userRole === "USER" ? (
+          <Link
+            to="/menu"
+            className="hover:text-white text-secondary block"
+            onClick={closeMenu}
+          >
+            Menu
+          </Link>
+        ) : userRole === "STAFF" ? (
+          <Link
+            to="/current-orders"
+            className="hover:text-white text-secondary block"
+            onClick={closeMenu}
+          >
+            Staff
+          </Link>
+        ) : userRole === "ADMIN" ? (
+          <Link
+            to="/admin"
+            className="hover:text-white text-secondary block"
+            onClick={closeMenu}
+          >
+            Admin
+          </Link>
+        ) : null}
         <Link
           to="contact"
           className="hover:text-white text-secondary block"
