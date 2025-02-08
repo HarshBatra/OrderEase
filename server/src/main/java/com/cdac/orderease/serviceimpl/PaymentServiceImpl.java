@@ -1,4 +1,4 @@
-package com.cdac.orderease.service;
+package com.cdac.orderease.serviceimpl;
 
 import java.util.List;
 import java.util.Map;
@@ -22,9 +22,9 @@ import com.razorpay.RazorpayException;
 import jakarta.annotation.PostConstruct;
 
 @Service
-public class PaymentService {
+public class PaymentServiceImpl {
     
-    private static final Logger logger = LoggerFactory.getLogger(PaymentService.class);
+    private static final Logger logger = LoggerFactory.getLogger(PaymentServiceImpl.class);
 
     @Autowired
     private PaymentRepository paymentRepository;
