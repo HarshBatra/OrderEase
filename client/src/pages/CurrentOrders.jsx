@@ -11,7 +11,7 @@ const CurrentOrders = () => {
   const fetchOrders = async () => {
     const token = localStorage.getItem("token");
 
-    const response = await fetch(import.meta.env.VITE_API_URL + "/staff/order", {
+    const response = await fetch(import.meta.env.VITE_API_URL + "/staff/orders", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

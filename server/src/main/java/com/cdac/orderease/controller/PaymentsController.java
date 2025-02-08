@@ -50,7 +50,6 @@ public class PaymentsController {
                          .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    // Endpoint to get all payments
     @GetMapping
     public ResponseEntity<List<PaymentsDTO>> getAllPayments() {
         List<PaymentsDTO> payments = paymentService.getAllPayments();

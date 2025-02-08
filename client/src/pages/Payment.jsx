@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { clearCart } from "../redux/cartSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -35,7 +34,7 @@ const PaymentPage = () => {
       },
       body: JSON.stringify({
         user: {
-          userId: 1,
+          userId: JSON.parse(localStorage.getItem("user")).userId,
         },
         orderDateTime: new Date().toISOString(),
         orderStatus: "PLACED",

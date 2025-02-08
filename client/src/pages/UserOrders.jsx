@@ -10,10 +10,10 @@ const UserOrders = () => {
   const fetchOrders = async () => {
     try {
       const token = localStorage.getItem("token");
-      const user = localStorage.getItem("user");
+      const user = JSON.parse(localStorage.getItem("user"));
 
       const response = await fetch(
-        import.meta.env.VITE_API_URL + `/u/order/user/${parseInt(user.userId)}`,
+        import.meta.env.VITE_API_URL + `/u/order/user/${user.userId}`,
         {
           method: "GET",
           headers: {

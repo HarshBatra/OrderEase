@@ -30,7 +30,7 @@ function MenuForm() {
 
         try {
             const token = localStorage.getItem("token")
-            const response = await fetch(import.meta.env.VITE_API_URL + "/menu/add", {
+            const response = await fetch(import.meta.env.VITE_API_URL + "/admin/menu/add", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
