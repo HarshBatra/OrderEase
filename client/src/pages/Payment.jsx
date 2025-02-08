@@ -25,10 +25,13 @@ const PaymentPage = () => {
       quantity: item.quantity,
     }));
 
+    const token = localStorage.getItem("token");
+
     const response = await fetch(import.meta.env.VITE_API_URL + "/order/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         user: {
@@ -60,7 +63,7 @@ const PaymentPage = () => {
       },
     }));
 
-    console.log(orderItemsList);
+    const token = localStorage.getItem("token");
 
     const response = await fetch(
       import.meta.env.VITE_API_URL + "/orderitems/addList",
@@ -68,6 +71,7 @@ const PaymentPage = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(orderItemsList),
       }
@@ -84,12 +88,15 @@ const PaymentPage = () => {
 
   const createPayment = async (orderId) => {
     try {
+      const token = localStorage.getItem("token");
+
       const response = await fetch(
         import.meta.env.VITE_API_URL + "/payments/create",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
             orderId,

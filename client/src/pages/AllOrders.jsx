@@ -3,7 +3,15 @@ import { FaSearch } from "react-icons/fa";
 
 const fetchOrders = async (setOrders, setSortedOrders) => {
   try {
-    const response = await fetch(import.meta.env.VITE_API_URL + "/order");
+    const token = localStorage.getItem("token");
+
+    const response = await fetch(import.meta.env.VITE_API_URL + "/order", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const data = await response.json();
 
     const transformedOrders = data.map((order) => ({

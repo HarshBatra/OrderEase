@@ -34,11 +34,16 @@ const Login = () => {
 
       if (response.ok) {
         const userData = await response.json();
-        if (userData.role === "USER") {
+        const { token, user } = userData;
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
+
+        if (user.roles === "USER") {
           navigate("/menu");
-        } else if (userData.role === "ADMIN") {
+        } else if (user.roles === "ADMIN") {
           navigate("/admin");
-        } else if (userData.role === "STAFF") {
+        } else if (user.roles === "STAFF") {
           navigate("/current-orders");
         }
       } else {
