@@ -39,7 +39,7 @@ public class Order {
 	
 	@ManyToOne
 	@JoinColumn(name = "userid")
-	private User user;
+	private Users user;
 
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 	@JsonIgnore
@@ -69,11 +69,11 @@ public class Order {
 		this.orderStatus = orderStatus;
 	}
 
-	public User getUser() {
+	public Users getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Users user) {
 		this.user = user;
 	}
 
@@ -87,10 +87,9 @@ public class Order {
 
 	public Order() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Order(Long orderId, LocalDateTime orderDateTime, OrderStatus orderStatus, User user) {
+	public Order(Long orderId, LocalDateTime orderDateTime, OrderStatus orderStatus, Users user) {
 		super();
 		this.orderId = orderId;
 		this.orderDateTime = orderDateTime;
@@ -98,7 +97,7 @@ public class Order {
 		this.user = user;
 	}
 
-	public Order(Long orderId, LocalDateTime orderDateTime, OrderStatus orderStatus, User user,
+	public Order(Long orderId, LocalDateTime orderDateTime, OrderStatus orderStatus, Users user,
 			List<OrderItems> orderItemsList) {
 		super();
 		this.orderId = orderId;
