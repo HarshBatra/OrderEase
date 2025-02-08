@@ -14,7 +14,7 @@ const Menu = () => {
     const fetchMenuItems = async () => {
       const token = localStorage.getItem("token");
 
-      const response = await fetch(import.meta.env.VITE_API_URL + "/menu", {
+      const response = await fetch(import.meta.env.VITE_API_URL + "/menu/isAvailable", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

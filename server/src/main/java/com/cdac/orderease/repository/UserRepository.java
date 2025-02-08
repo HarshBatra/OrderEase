@@ -5,13 +5,13 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.cdac.orderease.entity.User;
+import com.cdac.orderease.entity.Users;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>{
+public interface UserRepository extends JpaRepository<Users, Long>{
 
 	boolean existsByUserEmail(String userEmail);
 
-	Optional<User> findByUsernameAndPassword(String username, String password);
-
+	Optional<Users> findByUsernameAndPassword(String username, String password);
+	public Optional<Users> findByUsername(String username);
 }

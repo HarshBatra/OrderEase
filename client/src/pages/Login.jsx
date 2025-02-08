@@ -16,10 +16,10 @@ const Login = () => {
       setError("Username and password are required!");
       return;
     }
-
+    console.log("One");
     try {
       const response = await fetch(
-        import.meta.env.VITE_API_URL + "/user/login",
+        import.meta.env.VITE_API_URL + "/auth/login",
         {
           method: "POST",
           headers: {
@@ -31,7 +31,8 @@ const Login = () => {
           }),
         }
       );
-
+      console.log("Two");
+      
       if (response.ok) {
         const userData = await response.json();
         const { token, user } = userData;
@@ -39,11 +40,12 @@ const Login = () => {
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
 
-        if (user.roles === "USER") {
+        if (user.role === "USER") {
           navigate("/menu");
-        } else if (user.roles === "ADMIN") {
+        } else if (user.role === "ADMIN") {
           navigate("/admin");
-        } else if (user.roles === "STAFF") {
+        } else if (user.role === "STAFF") {
+          console.log("three");
           navigate("/current-orders");
         }
       } else {

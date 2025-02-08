@@ -11,7 +11,7 @@ const CurrentOrdersC = ({ ele, removeOrderFromUI }) => {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        import.meta.env.VITE_API_URL + `/order/${ele.orderId}`,
+        import.meta.env.VITE_API_URL + `/staff/order/${ele.orderId}`,
         {
           method: "PUT",
           body: JSON.stringify(updatedOrder),

@@ -66,7 +66,7 @@ const PaymentPage = () => {
     const token = localStorage.getItem("token");
 
     const response = await fetch(
-      import.meta.env.VITE_API_URL + "/orderitems/addList",
+      import.meta.env.VITE_API_URL + "/u/orderitems/addList",
       {
         method: "POST",
         headers: {
@@ -100,7 +100,7 @@ const PaymentPage = () => {
           },
           body: JSON.stringify({
             orderId,
-            amount: totalAmount,
+            amount: totalAmount.toFixed(2),
           }),
         }
       );

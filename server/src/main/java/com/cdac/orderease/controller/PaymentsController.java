@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,16 +18,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cdac.orderease.dto.PaymentsDTO;
-import com.cdac.orderease.service.PaymentService;
+import com.cdac.orderease.serviceimpl.PaymentServiceImpl;
 import com.razorpay.RazorpayException;
 
 @RestController
+@PreAuthorize("hasRole('USER')")
 @RequestMapping("/payments")
 @CrossOrigin(origins = "http://localhost:5173")  
 public class PaymentsController {
 
     @Autowired
-    private PaymentService paymentService;
+    private PaymentServiceImpl paymentService;
 
     @PostMapping("/create")
     public ResponseEntity<?> createPayment(@RequestBody PaymentsDTO paymentsDTO) throws RazorpayException {
