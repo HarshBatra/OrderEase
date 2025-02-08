@@ -62,6 +62,8 @@ public class MenuController {
 		MenuDTO savedMenu = menuService.addMenuData(menuDto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(savedMenu);
 	}
+	
+	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/{itemId}")
 	public ResponseEntity<String> deleteMenu(@PathVariable("itemId") Long itemId) throws CurrentItemNotPresentException {
 		String deleteMenuById = menuService.deleteMenuById(itemId);

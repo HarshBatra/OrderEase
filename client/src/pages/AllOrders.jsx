@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
+import { Link } from "react-router";
 
 const fetchOrders = async (setOrders, setSortedOrders) => {
   try {
     const token = localStorage.getItem("token");
 
-    const response = await fetch(import.meta.env.VITE_API_URL + "/admin/orders", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      import.meta.env.VITE_API_URL + "/admin/orders",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     const data = await response.json();
 
     const transformedOrders = data.map((order) => ({
-      orderId: `ORD${order.orderId}`,
+      orderId: `${order.orderId}`,
       amount: `₹${order.orderItemList
         .reduce(
           (total, item) =>
@@ -112,10 +116,16 @@ const AllOrders = () => {
 
   return (
     <div className="p-10">
-      <section>
+      <section className="flex justify-between mx-10 items-center">
         <h2 className="text-4xl font-bold text-center text-primary mb-12">
           All Orders
         </h2>
+        <Link
+          to="/admin"
+          className="bg-primary border rounded-lg text-white p-2 mt-3 mb-5 md:mr-10"
+        >
+          Update Menu
+        </Link>
       </section>
       <section>
         <div className="grid grid-cols-3 gap-4">

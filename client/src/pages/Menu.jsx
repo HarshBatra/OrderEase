@@ -14,13 +14,16 @@ const Menu = () => {
     const fetchMenuItems = async () => {
       const token = localStorage.getItem("token");
 
-      const response = await fetch(import.meta.env.VITE_API_URL + "/menu/isAvailable", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        import.meta.env.VITE_API_URL + "/menu/isAvailable",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const data = await response.json();
       setMenuItems(data);
     };
@@ -70,6 +73,11 @@ const Menu = () => {
             <option value="highToLow">Price: High to Low</option>
           </select>
         </div>
+        <Link to={"/user-orders"}>
+          <div className="px-8 py-2 my-4 w-fit cursor-pointer text-base text-center hover:text-primary bg-primary hover:bg-secondary rounded-full">
+            My Orders
+          </div>
+        </Link>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {sortedItems.map((item) => {

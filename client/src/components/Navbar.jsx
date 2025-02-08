@@ -1,11 +1,33 @@
-import { useState } from "react";
-import { Link } from "react-router";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("token") !== null &&
+      localStorage.getItem("token") !== ""
+  );
+
+  const navigate = useNavigate();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setIsLoggedIn(false);
+    navigate("/", { replace: true });
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(token !== null && token !== "");
+  }, [localStorage.getItem("token")]);
+
+  // Get user role from localStorage
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userRole = user ? user.role : null;
 
   return (
     <nav className="bg-primary shadow-md w-full">
@@ -18,12 +40,36 @@ const Navbar = () => {
           <Link to="/" className="hover:text-white text-secondary">
             Home
           </Link>
-          <Link to="login" className="hover:text-white text-secondary">
-            Login
-          </Link>
-          <Link to="menu" className="hover:text-white text-secondary">
-            Menu
-          </Link>
+          {isLoggedIn ? (
+            <button
+              onClick={handleLogout}
+              className="hover:text-white text-secondary"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link to="login" className="hover:text-white text-secondary">
+              Login
+            </Link>
+          )}
+          {/* Dynamically render the Menu based on user role */}
+          {userRole === "USER" ? (
+            <Link to="/menu" className="hover:text-white text-secondary">
+              Menu
+            </Link>
+          ) : userRole === "STAFF" ? (
+            <Link
+              to="/current-orders"
+              className="hover:text-white text-secondary"
+            >
+              Staff
+            </Link>
+          ) : userRole === "ADMIN" ? (
+            <Link to="/admin" className="hover:text-white text-secondary">
+              Admin
+            </Link>
+          ) : null}
+
           <Link to="contact" className="hover:text-white text-secondary">
             Contact
           </Link>
@@ -58,20 +104,48 @@ const Navbar = () => {
         >
           Home
         </Link>
-        <Link
-          to="login"
-          className="hover:text-white text-secondary block"
-          onClick={closeMenu}
-        >
-          Login
-        </Link>
-        <Link
-          to="menu"
-          className="hover:text-white text-secondary block"
-          onClick={closeMenu}
-        >
-          Menu
-        </Link>
+        {isLoggedIn ? (
+          <button
+            onClick={handleLogout}
+            className="hover:text-white text-secondary block"
+          >
+            Logout
+          </button>
+        ) : (
+          <Link
+            to="login"
+            className="hover:text-white text-secondary block"
+            onClick={closeMenu}
+          >
+            Login
+          </Link>
+        )}
+        {/* Dynamically render the Menu based on user role */}
+        {userRole === "USER" ? (
+          <Link
+            to="/menu"
+            className="hover:text-white text-secondary block"
+            onClick={closeMenu}
+          >
+            Menu
+          </Link>
+        ) : userRole === "STAFF" ? (
+          <Link
+            to="/current-orders"
+            className="hover:text-white text-secondary block"
+            onClick={closeMenu}
+          >
+            Staff
+          </Link>
+        ) : userRole === "ADMIN" ? (
+          <Link
+            to="/admin"
+            className="hover:text-white text-secondary block"
+            onClick={closeMenu}
+          >
+            Admin
+          </Link>
+        ) : null}
         <Link
           to="contact"
           className="hover:text-white text-secondary block"

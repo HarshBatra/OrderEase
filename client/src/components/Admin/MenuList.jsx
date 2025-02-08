@@ -8,18 +8,21 @@ function MenuList() {
     const token = localStorage.getItem("token");
 
     const fetchMenuItems = async () => {
-      const response = await fetch(import.meta.env.VITE_API_URL + "/admin/menu", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        import.meta.env.VITE_API_URL + "/admin/menu",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const data = await response.json();
       setMenuItems(data);
     };
     fetchMenuItems();
-  }, []);
+  }, [menuItems]);
 
   return (
     <div>

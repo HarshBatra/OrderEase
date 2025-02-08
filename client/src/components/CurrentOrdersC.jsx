@@ -59,12 +59,14 @@ const CurrentOrdersC = ({ ele, removeOrderFromUI }) => {
             <span className="font-semibold">Total Amount: </span>
             <span className="ml-2">
               Rs.
-              {ele.orderItemList.reduce(
-                (total, orderItem) =>
-                  total +
-                  parseFloat(orderItem.items.itemPrice) * orderItem.quantity,
-                0
-              )}
+              {ele.orderItemList
+                .reduce(
+                  (total, orderItem) =>
+                    total +
+                    parseFloat(orderItem.items.itemPrice) * orderItem.quantity,
+                  0
+                )
+                .toFixed(2)}
             </span>
           </div>
         </div>
