@@ -8,7 +8,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [phoneNo, setPhoneNo] = useState("");
-  const [roles, setRoles] = useState("USER");
+  const [role, setrole] = useState("USER");
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
@@ -21,14 +21,14 @@ const Signup = () => {
       return;
     }
 
-    if (!username || !userEmail || !phoneNo || !roles) {
+    if (!username || !userEmail || !phoneNo || !role) {
       setError("All fields are required!");
       return;
     }
 
     try {
       const response = await fetch(
-        import.meta.env.VITE_API_URL + "/user/register",
+        import.meta.env.VITE_API_URL + "/auth/register",
         {
           method: "POST",
           headers: {
@@ -39,7 +39,7 @@ const Signup = () => {
             userEmail,
             password,
             phoneNo,
-            roles,
+            role,
           }),
         }
       );
@@ -137,13 +137,13 @@ const Signup = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="roles" className="block text-primary">
+            <label htmlFor="role" className="block text-primary">
               Role
             </label>
             <select
-              id="roles"
-              value={roles}
-              onChange={(e) => setRoles(e.target.value)}
+              id="role"
+              value={role}
+              onChange={(e) => setrole(e.target.value)}
               className="w-full mt-2 p-3 border border-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
             >
               <option value="USER">User</option>

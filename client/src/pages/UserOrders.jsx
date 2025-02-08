@@ -13,7 +13,7 @@ const UserOrders = () => {
       const user = localStorage.getItem("user");
 
       const response = await fetch(
-        import.meta.env.VITE_API_URL + `/order/user/${user.userId}```,
+        import.meta.env.VITE_API_URL + `/u/order/user/${parseInt(user.userId)}`,
         {
           method: "GET",
           headers: {

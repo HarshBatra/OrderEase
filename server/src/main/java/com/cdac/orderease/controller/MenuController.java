@@ -57,7 +57,7 @@ public class MenuController {
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@PostMapping("/admin/add")
+	@PostMapping("/admin/menu/add")
 	public ResponseEntity<MenuDTO> addMenu(@RequestBody MenuDTO menuDto) throws ItemAlreadyExistsException {
 		MenuDTO savedMenu = menuService.addMenuData(menuDto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(savedMenu);

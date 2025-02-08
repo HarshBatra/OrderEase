@@ -53,13 +53,14 @@ public class OrderController {
 	}
 	
 	@PreAuthorize("hasRole('STAFF')")
-	@PutMapping("/staff/{orderId}")
+	@PutMapping("/staff/order/{orderId}")
 	public ResponseEntity<OrderDTO> updateOrder(@PathVariable Long orderId, @RequestBody OrderDTO orderDto) throws OrderNotFoundException {
 		OrderDTO savedOrder = orderService.updateOrder(orderId, orderDto);
 		return ResponseEntity.ok(savedOrder);
 	}
 	
-	@GetMapping("/u/user/{userId}")
+	@PreAuthorize("hasRole('USER')")
+	@GetMapping("/u/order/user/{userId}")
 	public ResponseEntity<List<OrderDTO>> getOrdersByUserId(@PathVariable Long userId) throws OrderNotFoundException {
 	    List<OrderDTO> userOrders = orderService.getOrdersByUserId(userId);
 	    return ResponseEntity.status(HttpStatus.OK).body(userOrders);

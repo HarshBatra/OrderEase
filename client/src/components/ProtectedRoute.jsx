@@ -10,8 +10,8 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
     return null;
   }
 
-  if (!allowedRoles.includes(user?.roles)) {
-    navigate("/unauthorized");
+  if (!allowedRoles.includes(user?.role)) {
+    navigate("/");
     return null;
   }
 
