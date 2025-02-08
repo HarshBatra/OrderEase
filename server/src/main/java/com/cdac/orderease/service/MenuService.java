@@ -18,4 +18,6 @@ public interface MenuService {
 	List<MenuDTO> getAllMenu() throws MenuDataNotFoundException;
 
 	List<MenuDTO> getIsAvailableMenu() throws NoItemAvailableException;
+
+	String deleteMenuById(Long itemId) throws CurrentItemNotPresentException;
 }
