@@ -12,7 +12,15 @@ const Menu = () => {
 
   useEffect(() => {
     const fetchMenuItems = async () => {
-      const response = await fetch(import.meta.env.VITE_API_URL + "/menu");
+      const token = localStorage.getItem("token");
+
+      const response = await fetch(import.meta.env.VITE_API_URL + "/menu", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
       const data = await response.json();
       setMenuItems(data);
     };

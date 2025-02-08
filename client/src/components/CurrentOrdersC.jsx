@@ -8,6 +8,8 @@ const CurrentOrdersC = ({ ele, removeOrderFromUI }) => {
     setEditedOrder(updatedOrder);
 
     try {
+      const token = localStorage.getItem("token");
+
       const response = await fetch(
         import.meta.env.VITE_API_URL + `/order/${ele.orderId}`,
         {
@@ -15,6 +17,7 @@ const CurrentOrdersC = ({ ele, removeOrderFromUI }) => {
           body: JSON.stringify(updatedOrder),
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
         }
       );

@@ -9,9 +9,18 @@ const UserOrders = () => {
 
   const fetchOrders = async () => {
     try {
-      const userId = 1;
+      const token = localStorage.getItem("token");
+      const user = localStorage.getItem("user");
+
       const response = await fetch(
-        import.meta.env.VITE_API_URL + `/order/user/${userId}`
+        import.meta.env.VITE_API_URL + `/order/user/${user.userId}```,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       if (!response.ok) {

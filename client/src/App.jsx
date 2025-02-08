@@ -24,21 +24,88 @@ const App = () => {
           <Navbar />
           <div className="flex-grow">
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route
+                path="/"
+                element={
+                  <ProtectedRoute allowedRoles={["USER"]}>
+                    <Home />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/menu" element={<Menu />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/payment" element={<Payment />} />
+              <Route
+                path="/contact"
+                element={
+                  <ProtectedRoute allowedRoles={["USER"]}>
+                    <Contact />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/menu"
+                element={
+                  <ProtectedRoute allowedRoles={["USER"]}>
+                    <Menu />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/cart"
+                element={
+                  <ProtectedRoute allowedRoles={["USER"]}>
+                    <Cart />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/payment"
+                element={
+                  <ProtectedRoute allowedRoles={["USER"]}>
+                    <Payment />
+                  </ProtectedRoute>
+                }
+              />
               <Route
                 path="/order-confirmation"
-                element={<OrderConfirmation />}
+                element={
+                  <ProtectedRoute allowedRoles={["USER"]}>
+                    <OrderConfirmation />
+                  </ProtectedRoute>
+                }
               />
-              <Route path="/user-orders" element={<UserOrders />} />
-              <Route path="/current-orders" element={<CurrentOrders />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="/all-orders" element={<AllOrders />} />
+              <Route
+                path="/user-orders"
+                element={
+                  <ProtectedRoute allowedRoles={["USER"]}>
+                    <UserOrders />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/current-orders"
+                element={
+                  <ProtectedRoute allowedRoles={["STAFF"]}>
+                    <CurrentOrders />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin"
+                element={
+                  <ProtectedRoute allowedRoles={["ADMIN"]}>
+                    <Admin />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/all-orders"
+                element={
+                  <ProtectedRoute allowedRoles={["ADMIN"]}>
+                    <AllOrders />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="*" element={<Error404 />} />
             </Routes>
           </div>
