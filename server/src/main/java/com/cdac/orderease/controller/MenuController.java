@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,6 +57,12 @@ public class MenuController {
 	public ResponseEntity<List<MenuDTO>> getIsAvailableMenu() throws NoItemAvailableException {
 		List<MenuDTO> menuDtoList = menuService.getIsAvailableMenu();
 		return ResponseEntity.ok(menuDtoList);
+	}
+	
+	@DeleteMapping("/{itemId}")
+	public ResponseEntity<String> deleteMenu(@PathVariable("itemId") Long itemId) throws CurrentItemNotPresentException {
+		String deleteMenuById = menuService.deleteMenuById(itemId);
+		return ResponseEntity.status(HttpStatus.FOUND).body(deleteMenuById);
 	}
 	
 }
