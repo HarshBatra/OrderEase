@@ -66,14 +66,16 @@ const UserOrderCard = ({ order }) => {
               <span>
                 {item.items.itemName} (x{item.quantity})
               </span>
-              <span>${item.items.itemPrice * item.quantity}</span>
+              <span>
+                Rs.{(item.items.itemPrice * item.quantity).toFixed(2)}
+              </span>
             </div>
           ))}
         </div>
 
         <div className="mt-4 flex justify-between text-xl font-semibold text-primary">
           <span>Total</span>
-          <span>${totalAmount}</span>
+          <span>Rs.{totalAmount.toFixed(2)}</span>
         </div>
       </div>
     </div>

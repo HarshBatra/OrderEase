@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
+import Unauthorised from "./pages/Unauthorised";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Contact from "./pages/Contact";
@@ -25,22 +26,11 @@ const App = () => {
           <Navbar />
           <div className="flex-grow">
             <Routes>
-              <Route
-                path="/"
-                element={
-                    <Home />
-                }
-              />
+              <Route path="/" element={<Home />} />
+              <Route path="/unauthorised" element={<Unauthorised />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
-              <Route
-                path="/contact"
-                element={
-                  <ProtectedRoute allowedRoles={["USER"]}>
-                    <Contact />
-                  </ProtectedRoute>
-                }
-              />
+              <Route path="/contact" element={<Contact />} />
               <Route
                 path="/menu"
                 element={

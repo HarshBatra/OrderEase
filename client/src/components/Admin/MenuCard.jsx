@@ -53,19 +53,23 @@ function MenuCard({ ele, onDelete }) {
 
   // 🛠 Function to delete an item from the menu
   const handleDelete = async () => {
-    const confirmDelete = window.confirm(`Are you sure you want to delete ${ele.itemName}?`);
+    const confirmDelete = window.confirm(
+      `Are you sure you want to delete ${ele.itemName}?`
+    );
     if (!confirmDelete) return; // Stop if user cancels
 
     try {
-      const token = localStorage.getItem("token")
-      const response = await fetch(import.meta.env.VITE_API_URL + `/menu/${ele.itemId}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          Authorization: `Bearer ${token}`
-        },
-      });
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        import.meta.env.VITE_API_URL + `/menu/${ele.itemId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.ok) {
         // alert(`${ele.itemName} has been deleted.`);
@@ -90,7 +94,9 @@ function MenuCard({ ele, onDelete }) {
       </div>
       <div className="col-span-3">
         <p className="md:p-1 m-1 font-semibold md:text-xl">{ele.itemName}</p>
-        <p className="text-xs text-secondary m-1 md:text-lg">{ele.itemDescription}</p>
+        <p className="text-xs text-secondary m-1 md:text-lg">
+          {ele.itemDescription}
+        </p>
       </div>
       <div className="m-3 md:p-4">Rs.{ele.itemPrice}</div>
       <div className="flex items-center justify-center">

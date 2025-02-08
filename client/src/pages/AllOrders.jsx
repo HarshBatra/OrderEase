@@ -5,17 +5,20 @@ const fetchOrders = async (setOrders, setSortedOrders) => {
   try {
     const token = localStorage.getItem("token");
 
-    const response = await fetch(import.meta.env.VITE_API_URL + "/admin/orders", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      import.meta.env.VITE_API_URL + "/admin/orders",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     const data = await response.json();
 
     const transformedOrders = data.map((order) => ({
-      orderId: `ORD${order.orderId}`,
+      orderId: `${order.orderId}`,
       amount: `₹${order.orderItemList
         .reduce(
           (total, item) =>
