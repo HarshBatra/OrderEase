@@ -3,6 +3,7 @@ package com.cdac.orderease.jwtutil;
 import java.util.Date;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
@@ -12,8 +13,11 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Component
 public class JwtUtils {
 	
-	private String secretKey = "2D4A614E645267556B58703273357638792F423F4428472B4B6250655368566D"; 
-    private long validity = 3600000;
+	@Value("${jwt.secretKey}")
+	private String secretKey;
+	
+	@Value("${jwt.validity}")
+	private long validity;
 	
 	public String generateToken(String username, String roles) {
 		String prefixedRoles = "ROLE_"+roles;
