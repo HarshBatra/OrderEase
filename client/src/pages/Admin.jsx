@@ -1,7 +1,8 @@
 import React from "react";
+import { AdminHome } from "../components/Admin/AdminHome";
 
 const Admin = () => {
-  return <div>Admin Page</div>;
+  return <div><AdminHome/></div>;
 };
 
 export default Admin;
