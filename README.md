@@ -3,7 +3,7 @@
 **Tagline:** _"Where Convenience Meets Deliciousness."_
 
 **Description:**  
-OrderEase is a modern canteen order management system designed to simplify food ordering and streamline operations. From placing orders to tracking status in real time, it ensures a hassle-free experience for customers, staff, and admins alike.
+OrderEase is a modern canteen order management system designed to simplify food ordering and streamline operations. From placing orders to tracking status, it ensures a hassle-free experience for customers, staff, and admins alike.
 
 ---
 
@@ -53,8 +53,7 @@ OrderEase is a modern canteen order management system designed to simplify food 
 ### 5. Admin Panel
 
 - Menu management: Add, edit, delete items.
-- Daily sales and stock analytics.
-- User management: Monitor staff and customer activities.
+- Daily sales and analytics.
 
 ---
 
@@ -64,7 +63,6 @@ OrderEase is a modern canteen order management system designed to simplify food 
 
 - **Language**: JavaScript
 - **Frameworks**: React.js, Tailwind
-- **Design Tools**: Figma for wireframing & prototyping
 
 ### Backend
 
@@ -74,8 +72,7 @@ OrderEase is a modern canteen order management system designed to simplify food 
 
 ### Integration
 
-- **Payments**: Razorpay or Stripe
-- **Real-time updates**: WebSockets
+- **Payments**: Razorpay
 
 ### Hosting
 
