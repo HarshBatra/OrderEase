@@ -50,7 +50,7 @@ public class MenuController {
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@PutMapping("/admin/{itemId}")
+	@PutMapping("/admin/menu/{itemId}")
 	public ResponseEntity<MenuDTO> updateMenu(@PathVariable("itemId") Long itemId, @RequestBody MenuDTO menuDto) throws CurrentItemNotPresentException {
 		MenuDTO updatedMenuData = menuService.updateSingleMenuData(itemId, menuDto);
 		return ResponseEntity.ok(updatedMenuData);
@@ -64,7 +64,7 @@ public class MenuController {
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
-	@DeleteMapping("/{itemId}")
+	@DeleteMapping("/menu/{itemId}")
 	public ResponseEntity<String> deleteMenu(@PathVariable("itemId") Long itemId) throws CurrentItemNotPresentException {
 		String deleteMenuById = menuService.deleteMenuById(itemId);
 		return ResponseEntity.status(HttpStatus.FOUND).body(deleteMenuById);
