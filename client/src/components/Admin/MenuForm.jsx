@@ -153,23 +153,6 @@ function MenuForm() {
                             </label>
                         </div>
                     </div>
-
-                    {/* <div className="flex items-center justify-center mt-4 mb-4">
-                        <span className="text-xs font-medium mx-2">Item Available</span>
-                        <label htmlFor="toggle" className="flex items-center cursor-pointer">
-                            <input
-                                type="checkbox"
-                                id="toggle"
-                                name="itemIsAvailable"
-                                className="sr-only peer"
-                                checked={formData.itemIsAvailable}
-                                onChange={handleChange}
-                            />
-                            <div className="block bg-primary w-16 h-7 p-0.5 rounded-full relative peer-checked:bg-green-500">
-                                <div className="absolute bg-white w-6 h-6 rounded-full transition-all duration-300 left-1 top-0.5 peer-checked:left-8"></div>
-                            </div>
-                        </label>
-                    </div> */}
                     <div className="flex items-center justify-center mt-4 mb-4">
                         <span className="text-xs font-medium mx-2">Item Available</span>
                         <label htmlFor="toggle" className="relative inline-flex items-center cursor-pointer">
