@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: SERVER
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/orderease
+    username: root
+    password: arpit
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
