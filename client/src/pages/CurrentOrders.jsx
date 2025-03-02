@@ -4,10 +4,6 @@ import CurrentOrdersC from "../components/CurrentOrdersC";
 const CurrentOrders = () => {
   const [orders, setOrders] = useState([]);
 
-  useEffect(() => {
-    fetchOrders();
-  }, []);
-
   const fetchOrders = async () => {
     const token = localStorage.getItem("token");
 
@@ -25,6 +21,10 @@ const CurrentOrders = () => {
       )
     );
   };
+
+  useEffect(() => {
+    fetchOrders();
+  }, []);
 
   const removeOrderFromUI = (orderId) => {
     setOrders((prevOrders) =>

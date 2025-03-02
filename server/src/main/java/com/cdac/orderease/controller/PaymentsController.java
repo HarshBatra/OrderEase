@@ -24,7 +24,6 @@ import com.razorpay.RazorpayException;
 @RestController
 @PreAuthorize("hasRole('USER')")
 @RequestMapping("/payments")
-@CrossOrigin(origins = "http://localhost:5173")  
 public class PaymentsController {
 
     @Autowired

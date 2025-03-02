@@ -10,7 +10,7 @@ const UserOrders = () => {
   const fetchOrders = async () => {
     try {
       const token = localStorage.getItem("token");
-      const user = JSON.parse(localStorage.getItem("user"));
+      const user = JSON.parse(localStorage.getItem("user")) || {};
 
       const response = await fetch(
         import.meta.env.VITE_API_URL + `/u/order/user/${user.userId}`,
@@ -26,9 +26,9 @@ const UserOrders = () => {
       if (!response.ok) {
         throw new Error(`HTTP Error: ${response.status}`);
       }
-      const contentType = response.headers.get("Content-Type");
-      if (!contentType || !contentType.includes("application/json")) {
-        throw new Error("Response is not JSON");
+      const contentType = response.headers.get("Content-Type") || "";
+      if (!contentType.includes("application/json")) {
+        throw new Error("Invalid response format");
       }
       const data = await response.json();
       setOrders(data);

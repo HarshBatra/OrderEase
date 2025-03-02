@@ -1,6 +1,6 @@
 import React from "react";
 import { FaCheckCircle, FaUtensils, FaTruck, FaUsers } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (

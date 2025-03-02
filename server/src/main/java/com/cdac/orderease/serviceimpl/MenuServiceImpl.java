@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.cdac.orderease.dto.MenuDTO;
@@ -21,7 +22,7 @@ public class MenuServiceImpl implements MenuService {
 
 	private final MenuRepository menuRepository;
 	
-	public MenuServiceImpl(MenuRepository menuRepository) {
+	public MenuServiceImpl(@Lazy MenuRepository menuRepository) {
 		this.menuRepository = menuRepository;
 	}
 	
@@ -44,16 +45,6 @@ public class MenuServiceImpl implements MenuService {
 		Menu menu = itemById.get();
 		return MenuMapper.mapMenuToMenuDto(menu);
 	}
-
-//	@Override
-//	public MenuDTO updateSingleMenuData(Long itemId, MenuDTO menuDto) throws CurrentItemNotPresentException {
-//		Menu menu = menuRepository.findById(itemId)
-//				.orElseThrow(() -> new CurrentItemNotPresentException("Item with ID : " + itemId + " doesnot exists."));
-//		menu = MenuMapper.mapMenuDtoToMenu(menuDto);
-//		Menu updatedMenu = menuRepository.save(menu);
-//		
-//		return MenuMapper.mapMenuToMenuDto(updatedMenu);
-//	}
 	
 	@Override
 	public MenuDTO updateSingleMenuData(Long itemId, MenuDTO menuDto) throws CurrentItemNotPresentException {
