@@ -18,7 +18,6 @@ import com.cdac.orderease.service.OrderItemsService;
 @RestController
 @RequestMapping("")
 @PreAuthorize("hasAuthority('ROLE_USER')")
-@CrossOrigin(origins = "http://localhost:5173")  
 public class OrderItemsController {
 	
 	@Autowired
