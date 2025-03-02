@@ -51,6 +51,15 @@ function MenuForm() {
         } catch (error) {
             console.error("Fetch Error:", error);
         }
+        setFormData({
+            itemName: "",
+            itemDescription: "",
+            itemImageUrl: "",
+            itemImage: "",
+            itemPrice: "",
+            itemType: "Veg",
+            itemIsAvailable: false,
+        });
     };
 
     return (
