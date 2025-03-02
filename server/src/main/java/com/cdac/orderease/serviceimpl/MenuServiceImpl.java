@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.cdac.orderease.dto.MenuDTO;
@@ -21,7 +22,7 @@ public class MenuServiceImpl implements MenuService {
 
 	private final MenuRepository menuRepository;
 	
-	public MenuServiceImpl(MenuRepository menuRepository) {
+	public MenuServiceImpl(@Lazy MenuRepository menuRepository) {
 		this.menuRepository = menuRepository;
 	}
 	

@@ -1,5 +1,7 @@
 package com.cdac.orderease.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,10 +21,12 @@ public class OrderItems {
 	private Long orderItemId;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "itemid")
 	private Menu items;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "orderid")
 	private Order order;
 	
