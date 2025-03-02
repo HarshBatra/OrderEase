@@ -44,16 +44,6 @@ public class MenuServiceImpl implements MenuService {
 		Menu menu = itemById.get();
 		return MenuMapper.mapMenuToMenuDto(menu);
 	}
-
-//	@Override
-//	public MenuDTO updateSingleMenuData(Long itemId, MenuDTO menuDto) throws CurrentItemNotPresentException {
-//		Menu menu = menuRepository.findById(itemId)
-//				.orElseThrow(() -> new CurrentItemNotPresentException("Item with ID : " + itemId + " doesnot exists."));
-//		menu = MenuMapper.mapMenuDtoToMenu(menuDto);
-//		Menu updatedMenu = menuRepository.save(menu);
-//		
-//		return MenuMapper.mapMenuToMenuDto(updatedMenu);
-//	}
 	
 	@Override
 	public MenuDTO updateSingleMenuData(Long itemId, MenuDTO menuDto) throws CurrentItemNotPresentException {
