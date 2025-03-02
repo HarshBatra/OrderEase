@@ -21,12 +21,10 @@ public class OrderItems {
 	private Long orderItemId;
 	
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name = "itemid")
 	private Menu items;
 	
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name = "orderid")
 	private Order order;
 	
