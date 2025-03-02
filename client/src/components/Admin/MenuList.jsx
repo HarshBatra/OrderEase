@@ -23,10 +23,10 @@ function MenuList() {
       setMenuItems(data);
     };
     fetchMenuItems();
-  }, [refresh]); // use refresh as dependency
+  }, [menuItems]);
 
   // Function to trigger refresh
-  const triggerRefresh = () => setRefresh(prev => !prev);
+  const triggerRefresh = () => setRefresh((prev) => !prev);
 
   return (
     <div>
