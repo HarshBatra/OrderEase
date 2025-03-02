@@ -28,7 +28,6 @@ import com.cdac.orderease.repository.UserRepository;
 import com.cdac.orderease.service.UserService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")  
 public class UsersController {
 
 	@Autowired
